@@ -32,5 +32,5 @@ Write-Host "Traceroute to $publicIPAddress completed with $hops hops."
 if ($hops -eq 1) {
     Write-Host "You most likely do not have CG-NAT."
 } else {
-    Write-Host "You have $hops hops."
+    Write-Host "You have $hops hops.  This likely means you have CG-NAT"
 }
