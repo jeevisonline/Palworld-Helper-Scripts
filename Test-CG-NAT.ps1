@@ -16,7 +16,7 @@ function Perform-Traceroute {
         [string]$IPAddress
     )
 
-    $tracerouteResults = tracert $IPAddress
+    $tracerouteResults = tracert -h 3 $IPAddress
     $hops = ($tracerouteResults | Select-String -Pattern "^\s*\d+\s").Count
 
     return $hops
@@ -31,6 +31,8 @@ Write-Host "Traceroute to $publicIPAddress completed with $hops hops."
 
 if ($hops -eq 1) {
     Write-Host "You most likely do not have CG-NAT."
+} elseif ($hops -ge 3) {
+    Write-Host "Your hops are 3 or greater. You most likely have CG-NAT."
 } else {
-    Write-Host "You have $hops hops.  This likely means you have CG-NAT"
+    Write-Host "You have $hops hops.  You most likely have CG-NAT."
 }
