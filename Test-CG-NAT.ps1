@@ -1,7 +1,7 @@
 # Function to get public IP address
 function Get-PublicIPAddress {
     try {
-        $ipAddress = Invoke-RestMethod -Uri "https://icanhazip.com/ipv4"
+        $ipAddress = Invoke-RestMethod -Uri "https://ipv4.icanhazip.com"
         return $ipAddress.Trim()
     }
     catch {
